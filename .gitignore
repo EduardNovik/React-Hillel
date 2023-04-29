@@ -1,4 +1,29 @@
-Lesson04/src draft/index.js
-Lesson04/src draft/index.css
-Lesson04/src draft/forms.js
-Lesson04/src draft/App.js
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+
+lesson03
+lesson04
+draft
+/node_modules
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
