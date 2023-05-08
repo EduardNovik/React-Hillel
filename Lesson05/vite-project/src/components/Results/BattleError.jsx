@@ -17,4 +17,6 @@ const BattleError = () => {
   );
 };
 
+
 export default BattleError;
+
