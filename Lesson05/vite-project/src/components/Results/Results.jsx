@@ -1,48 +1,34 @@
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { battle } from "../api";
+import { useEffect } from "react";
 import  PlayerPreview  from '../Battle/PlayerPreview'
 import BattleInfo from "./BattleInfo";
 import Loader from '../Popular/Loader'
 import BattleError from "./BattleError";
+import { useDispatch, useSelector } from 'react-redux'
+import { getBattleResultsThunk } from '../../redux/results.thunk'
+import { useLocation } from "react-router-dom";
 
 
 const Results = () => {
+
+  const dispatch = useDispatch()
   const location = useLocation();
-  const [battleResultData, setBattleResultData] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [err, setErr] = useState()
+  const params = new URLSearchParams(location.search);
+
+  const battleResultData = useSelector((state)=> state.results.battleResultsData)
+  const isLoading = useSelector((state)=> state.results.loading)
+  const err = useSelector((state)=> state.results.error)
 
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    console.log(params.get("playerOneName"),params.get("playerTwoName"),"location");
-
-    const getBattleResults = async () => {
-      setIsLoading(true)
-      try {
-        const players = await battle([
-          params.get("playerOneName"),
-          params.get("playerTwoName"),
-        ])
-        setBattleResultData(players);
-        
-      } catch (error) {
-        setErr(error.message);
-        console.log(error.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getBattleResults();
+   dispatch(getBattleResultsThunk(params)) 
   }, []);
 
   return (
-    <div>
+    <>
       {err ? (
-        <BattleError err={err} />
+        <BattleError/>
       ) : isLoading ? (
-        <Loader />
+        <Loader/>
       ) : (
         <div className="row">
           {battleResultData.map((player, index) => {
@@ -58,7 +44,7 @@ const Results = () => {
           })}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
