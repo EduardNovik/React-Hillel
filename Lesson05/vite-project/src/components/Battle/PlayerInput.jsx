@@ -1,16 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import { setPlayerData } from "../../redux/battle.actions";
 
-const PlayerInput = ({label, onSubmit, id}) => {
+const PlayerInput = ({label, id}) => {
     
     const [userName, setUserName] = useState('')
-
+    const dispatch = useDispatch()
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        onSubmit(id, userName)
+        dispatch(setPlayerData(id, userName))
     }
 
+    const handleInputChange = (event) => {
+        setUserName(event.target.value)
+    }
+    
     return (
         <form className='column' onSubmit={handleSubmit}>
             <label className='header' htmlFor="userName">{label}</label>
@@ -20,8 +26,8 @@ const PlayerInput = ({label, onSubmit, id}) => {
                 placeholder='Github username'
                 autoComplete='off'
                 value={userName}
-                onChange={(event) => setUserName(event.target.value)} 
-            />
+                onChange={(event) => handleInputChange(event)} 
+                />
             <button className='button' type='submit' disabled={!userName}>Submit</button>
         </form>
     );
