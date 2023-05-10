@@ -1,41 +1,25 @@
-import { useState } from "react";
 import PlayerInput from "./PlayerInput";
 import PlayerPreview from "./PlayerPreview";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+import { resetPlayerData } from "../../redux/battle.actions";
 
 const Battle = () => {
-  
-  const [playerData, setPlayerData] = useState({
-      playerOneName:'',
-      playerOneImage:null,
-      playerTwoName:'',
-      playerTwoImage:null
-  })
 
-  const handleSubmit = (id, userName) => {
-    setPlayerData((prevState) => ({
-      ...prevState,
-      [`${id}Name`]:userName,
-      [`${id}Image`]:`https://github.com/${userName}.png?size=200`
-    }))
-  };
+  const dispatch = useDispatch()
+  const playerData = useSelector((state) => state.battle.playerData)
 
   const handleReset = (id) => {
-    setPlayerData((prevState) => ({
-      ...prevState,
-      [`${id}Name`]:'',
-      [`${id}Image`]:null
-    }))
+    dispatch(resetPlayerData(id))
   }
   
   return (
-    <div>
+    <>
       <div className="row">
         {!playerData.playerOneImage ?
           <PlayerInput 
             id='playerOne'
             label='Player 1'
-            onSubmit={handleSubmit}
           /> :
           <PlayerPreview
             avatar={playerData.playerOneImage}
@@ -48,7 +32,6 @@ const Battle = () => {
           <PlayerInput 
             id='playerTwo'
             label='Player 2'
-            onSubmit={handleSubmit}
           /> :
           <PlayerPreview
             avatar={playerData.playerTwoImage}
@@ -68,7 +51,7 @@ const Battle = () => {
           Battle
         </Link>
       }
-    </div>
+    </>
   )
 };
 
