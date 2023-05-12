@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 
-
-const BattleError = () => {
-  const err = useSelector((state) => state.results.error);
+const BattleError = ({err}) => {
 
   return (
     <div className="column-error">

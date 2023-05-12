@@ -4,7 +4,7 @@ import BattleInfo from "./BattleInfo";
 import Loader from '../Popular/Loader'
 import BattleError from "./BattleError";
 import { useDispatch, useSelector } from 'react-redux'
-import { getBattleResultsThunk } from '../../redux/results.thunk'
+import { getBattleResultsThunk } from '../../redux/resultsSlice'
 import { useLocation } from "react-router-dom";
 
 
@@ -26,7 +26,7 @@ const Results = () => {
   return (
     <>
       {err ? (
-        <BattleError/>
+        <BattleError err={err}/>
       ) : isLoading ? (
         <Loader/>
       ) : (

@@ -12,7 +12,7 @@ const Repositories = () => {
   return (
     <>
       {err ? 
-        <FetchError/>
+        <FetchError err={err}/>
       : 
       !isLoading ? (
         <ul className="popular-list">
