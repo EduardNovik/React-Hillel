@@ -2,7 +2,7 @@ import PlayerInput from "./PlayerInput";
 import PlayerPreview from "./PlayerPreview";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import { resetPlayerData } from "../../redux/battle.actions";
+import { resetPlayerData } from "../../redux/battleSlice";
 
 const Battle = () => {
 

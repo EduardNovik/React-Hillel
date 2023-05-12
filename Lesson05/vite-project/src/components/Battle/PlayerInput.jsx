@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { setPlayerData } from "../../redux/battle.actions";
+import { setPlayerData } from "../../redux/battleSlice";
 
 const PlayerInput = ({label, id}) => {
     
@@ -10,7 +10,7 @@ const PlayerInput = ({label, id}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        dispatch(setPlayerData(id, userName))
+        dispatch(setPlayerData({id, userName}))
     }
 
     const handleInputChange = (event) => {
