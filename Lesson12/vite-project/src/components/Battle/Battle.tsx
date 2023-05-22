@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { resetPlayerData } from "../../redux/battleSlice";
 import { FC, ReactElement } from "react";
 import { RootState } from "../../redux/store";
+import { AppDispatch } from "../../redux/store";
 
 interface PlayerData {
   playerOneImage: string | null;
@@ -15,10 +16,10 @@ interface PlayerData {
 
 const Battle: FC = (): ReactElement => {
 
-  const dispatch = useDispatch()
+  const dispatch: AppDispatch = useDispatch()
   const playerData = useSelector<RootState, PlayerData>((state) => state.battle.playerData)
 
-  const handleReset = (id: string) => {
+  const handleReset = (id: string):void => {
     dispatch(resetPlayerData(id))
   }
   

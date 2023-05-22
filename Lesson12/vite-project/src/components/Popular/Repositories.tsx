@@ -22,7 +22,7 @@ const Repositories: FC = (): ReactElement => {
       : 
       !isLoading ? (
         <ul className="popular-list">
-          {repos.map((repo: PopularRepo, index: number) => {
+          {repos.map((repo: PopularRepo, index: number):ReactElement => {
             return (
               <li key={repo.id} className="popular-item">
                 <div className="popular-rank">#{index + 1}</div>

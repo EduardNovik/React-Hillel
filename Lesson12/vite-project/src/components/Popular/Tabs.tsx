@@ -22,7 +22,7 @@ const Tabs: FC<SearchParamsProps> = ({ searchParams, setSearchParams }): ReactEl
   const isLoading = useSelector<RootState, boolean>((state) => state.popular.loading)
 
 
-  const changeLangHandler = (language: string) => {
+  const changeLangHandler = (language: string):void => {
     setSearchParams({lang:`${language}`})
   }
 

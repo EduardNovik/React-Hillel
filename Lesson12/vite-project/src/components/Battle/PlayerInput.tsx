@@ -3,6 +3,7 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { useDispatch } from 'react-redux'
 import { setPlayerData } from "../../redux/battleSlice";
 import { FC, ReactElement } from "react";
+import { AppDispatch } from "../../redux/store";
 
 interface PlayerInput {
     label: string;
@@ -12,14 +13,14 @@ interface PlayerInput {
 const PlayerInput: FC<PlayerInput> = ({label, id}): ReactElement => {
     
     const [userName, setUserName] = useState<string>('')
-    const dispatch = useDispatch()
+    const dispatch: AppDispatch = useDispatch()
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>):void => {
         event.preventDefault()
         dispatch(setPlayerData({id, userName}))
     }
 
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>):void => {
         setUserName(event.target.value)
     }
     
